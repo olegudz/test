@@ -23,7 +23,7 @@
 
 'use strict';
 
-let numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '0');
+let numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '0');
 
 let personalMovieDB = {
     count: numberOfFilms,
@@ -33,7 +33,7 @@ let personalMovieDB = {
     privat:false
 }
 
-let movies = [];
+let movies = {};
 
 let question = prompt('Один из последних просмотренных фильмов?');
 let answer = prompt('На сколько оцените его?');
@@ -43,4 +43,6 @@ question = prompt('Один из последних просмотренных �
 answer = prompt('На сколько оцените его?');
 movies[question] = answer;
 
-console.log(movies);
+personalMovieDB.movies = movies;
+
+console.log(personalMovieDB);
