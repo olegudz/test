@@ -13,7 +13,21 @@ P.S. Функции вызывать не обязательно*/
 
 'use strict';
 
-let numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '0');
+let numberOfFilms;
+
+
+function start() {
+
+    do {
+        numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '0');
+        
+    } while (numberOfFilms == null || numberOfFilms == '' || isNaN(numberOfFilms))
+
+}
+
+start();
+
+
 
 let personalMovieDB = {
     count: numberOfFilms,
@@ -23,27 +37,42 @@ let personalMovieDB = {
     privat: false
 }
 
-let question, answer;
 
-for (let i = 0; i < numberOfFilms; i++) {
-    do {
-        question = prompt('Один из последних просмотренных фильмов?');
-        answer = prompt('На сколько оцените его?');
-    } while (question == null || question == '' || answer == null || answer == '' || question.length > 50 || Number.isInteger(answer))
+function rememberMyFilms() {
+    let question, answer;
 
-    personalMovieDB.movies[question] = answer;
+    for (let i = 0; i < numberOfFilms; i++) {
+        do {
+            question = prompt('Один из последних просмотренных фильмов?');
+            answer = prompt('На сколько оцените его?');
+        } while (question == null || question == '' || answer == null || answer == '' || question.length > 50 || Number.isInteger(answer))
+
+        personalMovieDB.movies[question] = answer;
+
+    }
 
 }
 
-if (personalMovieDB.count < 10) {
-    alert("Просмотрено довольно мало фильмов");
-} else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
-    alert("Вы классический зритель");
-} else if (personalMovieDB.count > 30) {
-    alert("Вы киноман");
-} else {
-    alert("Произошла ошибка");
+rememberMyFilms();
+
+
+
+
+
+function detectPersonalLevel() {
+    if (personalMovieDB.count < 10) {
+        alert("Просмотрено довольно мало фильмов");
+    } else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
+        alert("Вы классический зритель");
+    } else if (personalMovieDB.count > 30) {
+        alert("Вы киноман");
+    } else {
+        alert("Произошла ошибка");
+    }
 }
+
+detectPersonalLevel();
+
 
 
 function showMyDB() {
